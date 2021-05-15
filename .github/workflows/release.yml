@@ -215,7 +215,7 @@ jobs:
           chmod +x gradlew
           if [ ${{ matrix.android }} = arm64 ]
           then
-               ./gradlew -Pj=$((`nproc`+0)) -Pabi_arm_32=false -Poverride_version=$((11581 + ${{ github.run_number }})) assembleExperimentalRelease
+               ./gradlew -Pj=$((`nproc`+0)) -Pabi_arm_32=false -Poverride_version=${{ needs.release.outputs.timestamp }} assembleExperimentalRelease
                mv ./app/build/outputs/apk/experimental/release/*.apk ../cdda-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.apk
           elif [ ${{ matrix.android }} = arm32 ]
           then
