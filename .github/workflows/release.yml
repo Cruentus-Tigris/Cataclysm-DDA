@@ -202,7 +202,6 @@ jobs:
           commit sha: ${{ github.sha }}
           commit url: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
           EOL
-          echo "UPSTREAM_BUILD_NUMBER = $((11581 + ${{ github.run_number }}))" >> $GITHUB_ENV
           sudo apt-get update
           sudo apt-get install gettext          
       - name: Build CDDA (android)
@@ -216,7 +215,7 @@ jobs:
           chmod +x gradlew
           if [ ${{ matrix.android }} = arm64 ]
           then
-               ./gradlew -Pj=$((`nproc`+0)) -Pabi_arm_32=false assembleExperimentalRelease
+               ./gradlew -Pj=$((`nproc`+0)) -Pabi_arm_32=false -Poverride_version=$((11581 + ${{ github.run_number }})) assembleExperimentalRelease
                mv ./app/build/outputs/apk/experimental/release/*.apk ../cdda-${{ matrix.artifact }}-${{ needs.release.outputs.timestamp }}.apk
           elif [ ${{ matrix.android }} = arm32 ]
           then
