@@ -208,7 +208,7 @@ jobs:
         if: runner.os == 'Linux' && matrix.android != 'none' && matrix.mxe == 'none'
         working-directory: ./android
         env:
-          UPSTREAM_BUILD_NUMBER: ${{ needs.release.outputs.timestamp }}
+          UPSTREAM_BUILD_NUMBER: 11581 + {{ github.run_number }}
         run: | 
           echo "${{ secrets.KEYSTORE }}" > release.keystore.asc   
           gpg -d --passphrase "${{ secrets.KEYSTORE_PASSWORD }}" --batch release.keystore.asc > app/release.keystore 
