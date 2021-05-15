@@ -202,13 +202,12 @@ jobs:
           commit sha: ${{ github.sha }}
           commit url: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
           EOL
+          echo "UPSTREAM_BUILD_NUMBER = $((11581 + ${{ github.run_number }}))" >> $GITHUB_ENV
           sudo apt-get update
           sudo apt-get install gettext          
       - name: Build CDDA (android)
         if: runner.os == 'Linux' && matrix.android != 'none' && matrix.mxe == 'none'
         working-directory: ./android
-        env:
-          UPSTREAM_BUILD_NUMBER: ${{ 11581 + github.run_number }}
         run: | 
           echo "${{ secrets.KEYSTORE }}" > release.keystore.asc   
           gpg -d --passphrase "${{ secrets.KEYSTORE_PASSWORD }}" --batch release.keystore.asc > app/release.keystore 
