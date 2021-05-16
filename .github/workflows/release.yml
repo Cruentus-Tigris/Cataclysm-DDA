@@ -213,7 +213,6 @@ jobs:
           echo "${{ secrets.KEYSTORE_PROPERTIES }}" > keystore.properties.asc   
           gpg -d --passphrase "${{ secrets.KEYSTORE_PASSWORD }}" --batch keystore.properties.asc > keystore.properties
           export UPSTREAM_BUILD_NUMBER="$((11581 + ${{ github.run_number }}))"
-          printenv UPSTREAM_BUILD_NUMBER
           chmod +x gradlew
           if [ ${{ matrix.android }} = arm64 ]
           then
