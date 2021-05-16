@@ -75,13 +75,6 @@ jobs:
             artifact: android-x32
             ext: apk
             content: application/apk 
-          - name: Android Bundle
-            os: ubuntu-latest
-            mxe: none
-            android: bundle
-            artifact: android-bundle
-            ext: aab
-            content: application/aap
     name: ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
     steps:
