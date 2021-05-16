@@ -1,4 +1,4 @@
-name: "Experimental Release"
+name: "Experimental Release Android Only"
 concurrency: release
 on:
   push:
